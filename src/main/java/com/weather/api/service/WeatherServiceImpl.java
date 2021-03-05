@@ -1,51 +1,33 @@
 package com.weather.api.service;
 
-import com.weather.service.dto.AccountDto;
-import com.weather.service.dto.TransactionDto;
-import com.weather.service.exception.RecordNotFoundException;
-import com.weather.service.model.Account;
-import com.weather.service.model.Transaction;
-import com.weather.service.repository.AccountRepository;
-import com.weather.service.repository.TransactionRepository;
-import org.modelmapper.ModelMapper;
+import com.weather.api.dto.WeatherResponse;
+import com.weather.api.repository.WeatherDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 @Service
 public class WeatherServiceImpl implements WeatherService {
 
     @Autowired
-    AccountRepository accountRepository;
+    WeatherDataRepository weatherDataRepository;
 
-    @Autowired
-    TransactionRepository transactionRepository;
+    //@Value("http://api.openweathermap.org/data/2.5")
+    //private String weatherApi;
 
-    @Autowired
-    ModelMapper modelMapper;
+    WebClient client = WebClient.create("http://api.openweathermap.org/data/2.5");
 
 
-    @Override
-    public List<AccountDto> getAccounts(String custID) {
 
-        List<Account> accountList = accountRepository.findByCustomerCustomerId(custID);
-        if (!accountList.isEmpty()){
-           return accountList.stream().map(account -> modelMapper.map(account,AccountDto.class)).collect(Collectors.toList());
-        }
-
-       throw new RecordNotFoundException("No accounts for the customer");
-    }
 
     @Override
-    public List<TransactionDto> getTransactions(String  accountNum) {
+    public Mono<WeatherResponse> getData(String country, String city, String apiKey) {
 
-        List<Transaction> transactionList = transactionRepository.findByAccountAccountNumber(accountNum);
-
-        if (!transactionList.isEmpty()){
-            return transactionList.stream().map(transaction -> modelMapper.map(transaction,TransactionDto.class)).collect(Collectors.toList());
-        }
-        throw new RecordNotFoundException("No transactions for the account");
+        return client.get().uri(uriBuilder -> uriBuilder.path("/weather")
+                .queryParam("q", country,city)
+                .queryParam("appid", apiKey)
+                .build()).retrieve().bodyToMono(WeatherResponse.class);
     }
+
 }

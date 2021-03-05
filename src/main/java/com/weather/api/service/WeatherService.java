@@ -1,15 +1,11 @@
 package com.weather.api.service;
 
-import com.weather.service.dto.AccountDto;
-import com.weather.service.dto.TransactionDto;
-
-import java.util.List;
+import com.weather.api.dto.WeatherResponse;
+import reactor.core.publisher.Mono;
 
 public interface WeatherService {
-    /*This will retrieve the accounts corresponding to customerid*/
-    List<AccountDto> getAccounts(String custID);
+    /*This will retrieve the Weather Data based on Country and City */
+    Mono<WeatherResponse> getData(String country, String city,String apiKey);
 
-    /*This will retrieve the transactions details for the account*/
-    List<TransactionDto> getTransactions(String accountNum);
 
 }

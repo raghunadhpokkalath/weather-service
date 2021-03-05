@@ -1,6 +1,6 @@
 package com.weather.api.controller;
 
-import com.weather.api.dto.AccountDto;
+import com.weather.api.dto.WeatherResponse;
 import com.weather.api.service.WeatherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -8,7 +8,10 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
+
 
 @Api(value = "Weather Data  Retrieval")
 @RestController
@@ -27,10 +30,9 @@ public class WeatherController {
                     @ApiResponse(code = 500, message = "Internal Server Error")
             }
     )
-    @ResponseEntity
-    public WeatherResponse getWeatherDescription(){
 
-       return weatherService.getDescription();
+    public Mono<WeatherResponse> getWeatherDescription(@RequestParam String county, @RequestParam String city,@RequestParam String apiKey){
+       return  weatherService.getData(county,city,apiKey);
     }
 
 }
