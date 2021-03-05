@@ -1,0 +1,44 @@
+plugins {
+
+    // Apply the java plugin to add support for Java
+    id 'java'
+    // Apply the groovy plugin to also add support for Groovy (needed for Spock)
+    id 'groovy'
+
+    // Apply the application plugin to add support for building an application
+    id 'application'
+
+    id 'org.springframework.boot' version '2.4.3'
+
+
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+
+group 'com.weather.service'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation group: 'io.swagger', name: 'swagger-annotations', version: '1.6.2'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2'
+
+    testImplementation 'org.codehaus.groovy:groovy-all:2.3.11'
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    compileOnly  group: 'org.projectlombok', name: 'lombok', version: '1.18.18'
+    compileOnly  'org.modelmapper:modelmapper:2.3.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.18'
+
+}
+
+test {
+    useJUnitPlatform()
+}
