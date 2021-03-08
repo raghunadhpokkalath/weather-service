@@ -33,6 +33,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation group: 'io.swagger', name: 'swagger-annotations', version: '1.6.2'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'com.h2database:h2'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
     testImplementation 'org.codehaus.groovy:groovy-all:2.3.11'
@@ -44,7 +45,11 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.18'
     implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.10.5'
-    implementation group: 'com.github.vladimir-bukhtoyarov' ,name: 'bucket4j-core' ,version: '4.10.0'
+    implementation group: 'com.giffing.bucket4j.spring.boot.starter' ,name: 'bucket4j-spring-boot-starter' ,version: '0.2.0'
+    implementation group: 'javax.cache',name: 'cache-api'
+    implementation group: 'com.github.ben-manes.caffeine',name: 'caffeine',version: '2.8.5'
+    implementation group: 'com.github.ben-manes.caffeine',name: 'jcache' , version: '2.8.5'
+
 
 }
 
