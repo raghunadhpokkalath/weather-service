@@ -4,10 +4,9 @@ import com.weather.api.model.WeatherData;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface WeatherDataRepository extends CrudRepository<WeatherData,String> {
 
-    List<WeatherData> findWeatherDataByCountryAndCity(String country,String city);
+    WeatherData findWeatherDataByCountryAndCity(String country, String city);
+
 }
