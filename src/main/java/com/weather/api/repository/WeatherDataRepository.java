@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface WeatherDataRepository extends CrudRepository<WeatherData,String> {
+public interface WeatherDataRepository extends CrudRepository<WeatherData, String> {
 
     WeatherData findWeatherDataByCountryAndCity(String country, String city);
 

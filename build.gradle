@@ -44,6 +44,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.18'
     implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
     implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.10.5'
+    implementation group: 'com.github.vladimir-bukhtoyarov' ,name: 'bucket4j-core' ,version: '4.10.0'
 
 }
 

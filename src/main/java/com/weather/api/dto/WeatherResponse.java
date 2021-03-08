@@ -12,7 +12,7 @@ public class WeatherResponse {
 
     private String description;
 
-    public WeatherResponse(String description){
-        this.description=description;
+    public WeatherResponse(String description) {
+        this.description = description;
     }
 }

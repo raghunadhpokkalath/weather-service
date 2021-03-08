@@ -22,13 +22,13 @@ public class WeatherController {
 
     @GetMapping("/data/description")
     @ApiOperation(value = "Retrieve Weather Description", response = WeatherResponse.class, notes = "This endpoint retrieve Weather Description based on Country And City")
-    @ApiResponses({ @ApiResponse(code = 200, message = "Weather Description"),
+    @ApiResponses({@ApiResponse(code = 200, message = "Weather Description"),
             @ApiResponse(code = 400, message = "Invalid Request Parameters"),
-            @ApiResponse(code = 500, message = "Internal Server Error") })
+            @ApiResponse(code = 500, message = "Internal Server Error")})
 
     public WeatherResponse getWeatherDescription(
-            @ApiParam("Country Name") @RequestParam @NotEmpty(message = "Country  is Mandatory")  String county, @ApiParam("City Name") @RequestParam @NotEmpty(message = "City  is Mandatory") String city,
-           @ApiParam("API Key")  @RequestHeader(name = "x-api-key") String apiKey) {
+            @ApiParam("Country Name") @RequestParam @NotEmpty(message = "Country  is Mandatory") String county, @ApiParam("City Name") @RequestParam @NotEmpty(message = "City  is Mandatory") String city,
+            @ApiParam("API Key") @RequestHeader(name = "x-api-key") String apiKey) {
         return weatherService.getData(county, city, apiKey);
 //                map(weatherResponse -> ResponseEntity.ok(weatherResponse))
 //                .defaultIfEmpty(ResponseEntity.notFound().build());
