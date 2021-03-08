@@ -2,15 +2,8 @@
 api:
   openweathermap:
     url: http://api.openweathermap.org/data/2.5/weather
-
-valid:
-  api:
-    keys:
-      - fedfc67ec822c2257583b17d01e423a3
-      - 71793f5b02bb0fe98c7b8720c76cb9f9
-      - d49ebe764fe53c5ca867f87c1ce9c6c7
-      - 41b8ce2c3caa7d8804dd27bac339fa42
-      - 8eccabe0fad952681a81b7c4f7f2a2d1
+  valid:
+    keys: fedfc67ec822c2257583b17d01e423a3,71793f5b02bb0fe98c7b8720c76cb9f9,d49ebe764fe53c5ca867f87c1ce9c6c7,41b8ce2c3caa7d8804dd27bac339fa42,8eccabe0fad952681a81b7c4f7f2a2d1
 server:
   servlet:
     context-path: /weather
@@ -35,10 +28,8 @@ bucket4j:
       http-response-body:
         message: Exceeded Hourly Limits
       rate-limits:
-        - expression: "getHeader('x-api-key')"
+        - expression: getHeader('x-api-key')
           bandwidths:
             - capacity: 2
               time: 10
               unit: minutes
-              #fixed-refill-interval: 1
-              #fixed-refill-interval-unit: minutes

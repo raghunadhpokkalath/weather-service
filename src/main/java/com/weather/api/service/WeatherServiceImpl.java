@@ -2,6 +2,7 @@ package com.weather.api.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.weather.api.dto.WeatherResponse;
+import com.weather.api.exception.RecordNotFoundException;
 import com.weather.api.exception.WeatherResponseExceptionHandler;
 import com.weather.api.model.WeatherData;
 import com.weather.api.repository.WeatherDataRepository;
@@ -9,10 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
@@ -61,7 +60,8 @@ public class WeatherServiceImpl implements WeatherService {
             log.info("Weather Description from API {}", description);
 
         } else if (responseNode.get("cod").asText().equals("404")) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Weather Data not Found");
+            throw new RecordNotFoundException("Weather Data not Found");
+           // throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Weather Data not Found");
         }
         return description;
     }

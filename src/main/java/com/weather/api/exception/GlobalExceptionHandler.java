@@ -29,9 +29,15 @@ public class GlobalExceptionHandler  {
         return new ApiException(HttpStatus.BAD_REQUEST,"Empty Query Parameters",errors);
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(ResponseStatusException.class)
-    public final ApiException handleNotFound(ResponseStatusException ex) {
-        return new ApiException(HttpStatus.NOT_FOUND,ex.getReason());
+    public final ApiException handleUnAuthrorized(ResponseStatusException ex) {
+        return new ApiException(HttpStatus.UNAUTHORIZED,ex.getReason());
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(RecordNotFoundException.class)
+    public final ApiException handleNotFound(RecordNotFoundException ex) {
+        return new ApiException(HttpStatus.NOT_FOUND,ex.getMessage());
     }
 }
