@@ -1,31 +1,26 @@
-//var common = require("common");
-
-//var request = common.request
-//var expect = common.expect
-
-describe('Get Weather Data ', function () {
-        it('200 - Respond with Description  for the Country UK and City London', function (done) {
-                request.get('data/description?county=UK&city=LONDON')
+describe('Record Not found for Invalid Input', function () {
+        it('Return 404 for invalid country', function (done) {
+                request.get('data/description?county=sd&city=Melbourne')
                         .set('Content-Type', 'application/json')
-                        .set('x-api-key', '71793f5b02bb0fe98c7b8720c76cb9f9')
+                        .set('x-api-key', 'd49ebe764fe53c5ca867f87c1ce9c6c7')
                         .send()
                         .end((err, res) => {
                                 if (err) return done(err);
-                                expect(res.status).to.eql(200);
-                                expect(res.body.description.length).to.greaterThan(0);
-                                done();
+                                expect(res.status).to.eql(404);
+                                expect(res.body.message).to.eql('Weather Data not Found');
+                            done();
                         });
         });
 
-    it('200 - Respond with Description  for the Country Australia and City Melbourne', function (done) {
-        request.get('data/description?county=Australia&city=Melbourne')
+    it('Return 404 for invalid and Country and City', function (done) {
+        request.get('data/description?county=India223&city=invalid')
             .set('Content-Type', 'application/json')
-            .set('x-api-key', '71793f5b02bb0fe98c7b8720c76cb9f9')
+            .set('x-api-key', 'd49ebe764fe53c5ca867f87c1ce9c6c7')
             .send()
             .end((err, res) => {
                 if (err) return done(err);
-                expect(res.status).to.eql(200);
-                expect(res.body.description.length).to.greaterThan(0);
+                expect(res.status).to.eql(404);
+                expect(res.body.message).to.eql('Weather Data not Found');
                 done();
             });
     });

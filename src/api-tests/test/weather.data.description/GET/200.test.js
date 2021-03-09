@@ -1,10 +1,5 @@
-var common = require("./common");
-
-var request = common.request
-var expect = common.expect
-
-describe('Get Weather Data ', function () {
-        it('200 - Respond with Description  for the Country UK and City London', function (done) {
+describe('200- Get Weather Data ', function () {
+        it('Success Response  for the Country UK and City London', function (done) {
                 request.get('data/description?county=UK&city=LONDON')
                         .set('Content-Type', 'application/json')
                         .set('x-api-key', '71793f5b02bb0fe98c7b8720c76cb9f9')
@@ -17,7 +12,7 @@ describe('Get Weather Data ', function () {
                         });
         });
 
-    it('200 - Respond with Description  for the Country Australia and City Melbourne', function (done) {
+    it('Success Response with description for the Country Australia and City Melbourne', function (done) {
         request.get('data/description?county=Australia&city=Melbourne')
             .set('Content-Type', 'application/json')
             .set('x-api-key', '71793f5b02bb0fe98c7b8720c76cb9f9')
