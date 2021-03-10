@@ -8,3 +8,5 @@ api-tests/test/weather.data.description/.DS_Store
 .vscode/settings.json
 src/api-tests/.DS_Store
 .classpath
+.gradle/**
+src/.DS_Store
