@@ -7,3 +7,4 @@ api-tests/test/weather.data.description/.DS_Store
 *.log
 .vscode/settings.json
 src/api-tests/.DS_Store
+.classpath
