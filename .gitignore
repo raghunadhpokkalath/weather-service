@@ -1,1 +1,9 @@
 /build/
+api-tests/.DS_Store
+api-tests/test/.DS_Store
+api-tests/test/weather.data.description/.DS_Store
+/bin/
+.gradle
+*.log
+.vscode/settings.json
+src/api-tests/.DS_Store

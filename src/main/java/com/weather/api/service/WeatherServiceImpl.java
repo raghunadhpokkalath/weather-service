@@ -1,6 +1,7 @@
 package com.weather.api.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.weather.api.config.ApiConfig;
 import com.weather.api.dto.WeatherResponse;
 import com.weather.api.exception.RecordNotFoundException;
 import com.weather.api.exception.WeatherResponseExceptionHandler;
@@ -8,7 +9,6 @@ import com.weather.api.model.WeatherData;
 import com.weather.api.repository.WeatherDataRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -24,8 +24,10 @@ public class WeatherServiceImpl implements WeatherService {
     @Autowired
     WeatherDataRepository weatherDataRepository;
 
-    @Value("${api.openweathermap.url}")
-    private String apiEndpoint;
+  //  @Value("${api.openweathermap.url}")
+    //private String apiEndpoint;
+    @Autowired
+    ApiConfig apiConfig;
 
     @Override
     public WeatherResponse getData(String country, String city, String apiKey) {
@@ -48,8 +50,8 @@ public class WeatherServiceImpl implements WeatherService {
 
     private String getDataFromAPI(String country, String city, String apiKey) {
         RestTemplate restTemplate = new RestTemplateBuilder().errorHandler(weatherResponseExceptionHandler).build();
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(apiEndpoint);
-        builder.queryParam("q", country + "," + city).queryParam("appid", apiKey).build();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(apiConfig.getUrl());
+        builder.queryParam("q", city + "," + country).queryParam("appid", apiKey).build();
         log.info("Invoking API Endpoint {}", builder.toUriString());
         String description = null;
         JsonNode responseNode = restTemplate.getForObject(builder.toUriString(), JsonNode.class);
@@ -57,7 +59,7 @@ public class WeatherServiceImpl implements WeatherService {
         if (responseNode != null && responseNode.get("cod").asText().equals("200")) {
             JsonNode weatherNode = responseNode.get("weather");
             description = weatherNode.get(0).get("description").asText();
-            log.info("Weather Description from API {}", description);
+            log.info("Weather Description is {} for Country {} and City {}", description,country,city);
 
         } else if (responseNode.get("cod").asText().equals("404")) {
             throw new RecordNotFoundException("Weather Data not Found");
