@@ -29,6 +29,9 @@ public class WeatherServiceImpl implements WeatherService {
   @Autowired
   ApiConfig apiConfig;
 
+  @Autowired
+  RestTemplate restTemplate;
+
   @Override
   public WeatherResponse getData(String country, String city, String apiKey) {
     WeatherData weatherData =
@@ -39,11 +42,10 @@ public class WeatherServiceImpl implements WeatherService {
   }
 
   private WeatherData getDataFromAPI(String country, String city, String apiKey) {
-    RestTemplate restTemplate =
-        new RestTemplateBuilder().errorHandler(weatherResponseExceptionHandler).build();
     UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(apiConfig.getUrl());
     builder.queryParam("q", city + "," + country).queryParam("appid", apiKey).build();
     log.info("Invoking API Endpoint {}", builder.toUriString());
+    restTemplate.setErrorHandler(weatherResponseExceptionHandler);
     JsonNode responseNode = restTemplate.getForObject(builder.toUriString(), JsonNode.class);
     log.info("API Response {}", responseNode);
     JsonNode weatherNode =

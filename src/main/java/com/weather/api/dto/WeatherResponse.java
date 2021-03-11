@@ -5,10 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
-@ToString
 public class WeatherResponse {
-
 
     private String description;
 
