@@ -20,13 +20,14 @@ import java.util.Optional;
 @Slf4j
 public class WeatherServiceImpl implements WeatherService {
 
-  @Autowired WeatherResponseExceptionHandler weatherResponseExceptionHandler;
+  @Autowired
+  WeatherResponseExceptionHandler weatherResponseExceptionHandler;
 
-  @Autowired WeatherDataRepository weatherDataRepository;
+  @Autowired
+  WeatherDataRepository weatherDataRepository;
 
-  //  @Value("${api.openweathermap.url}")
-  // private String apiEndpoint;
-  @Autowired ApiConfig apiConfig;
+  @Autowired
+  ApiConfig apiConfig;
 
   @Override
   public WeatherResponse getData(String country, String city, String apiKey) {
@@ -43,16 +44,13 @@ public class WeatherServiceImpl implements WeatherService {
     UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(apiConfig.getUrl());
     builder.queryParam("q", city + "," + country).queryParam("appid", apiKey).build();
     log.info("Invoking API Endpoint {}", builder.toUriString());
-    String description = null;
     JsonNode responseNode = restTemplate.getForObject(builder.toUriString(), JsonNode.class);
     log.info("API Response {}", responseNode);
-    if (responseNode != null && responseNode.get("cod").asText().equals("200")) {
-      JsonNode weatherNode = responseNode.get("weather");
-      description = weatherNode.get(0).get("description").asText();
-      log.info("Weather Description is {} for Country {} and City {}", description, country, city);
-    } else if (responseNode.get("cod").asText().equals("404")) {
-      throw new RecordNotFoundException("Weather Data not Found");
-    }
+    JsonNode weatherNode =
+        Optional.ofNullable(responseNode.get("weather")).orElseThrow(RecordNotFoundException::new);
+    String description =
+        Optional.ofNullable(weatherNode.get(0).get("description").asText())
+            .orElseThrow(RecordNotFoundException::new);
     WeatherData data = new WeatherData(country, city, description);
     weatherDataRepository.save(data);
     return data;

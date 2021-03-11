@@ -13,11 +13,6 @@ import java.util.List;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler  {
-//    @ResponseStatus(HttpStatus.NOT_FOUND)
-//    @ExceptionHandler(RecordNotFoundException.class)
-//    public final ApiException handleNotFound(Exception ex) {
-//        return new ApiException(ex.getMessage());
-//    }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
@@ -38,6 +33,6 @@ public class GlobalExceptionHandler  {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(RecordNotFoundException.class)
     public final ApiException handleNotFound(RecordNotFoundException ex) {
-        return new ApiException(HttpStatus.NOT_FOUND,ex.getMessage());
+        return new ApiException(HttpStatus.NOT_FOUND,"Weather Data not Found");
     }
 }
