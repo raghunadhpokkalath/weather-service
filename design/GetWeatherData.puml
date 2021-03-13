@@ -1,0 +1,40 @@
+@startuml 
+title Weather description API
+actor "User" as user
+control "Weather Service" as weatherservice<< Spring APP>>
+database "H2 DB" as h2db
+participant "Open WeatherMap \nAPI" as openweathermap
+activate user
+user->weatherservice:  ** GET /weather/data/description?county={countryname}&city={city}+[x-api-key] **
+activate weatherservice
+weatherservice -> weatherservice: validateRequest
+weatherservice->openweathermap: **  GET http://api.openweathermap.org/data/2.5/weather?q={country},{city}&appid={apiKey} **
+activate openweathermap
+openweathermap->weatherservice: Return Weather Data
+deactivate openweathermap
+weatherservice -> weatherservice: Process Weather Data Response and \n extract Description field
+weatherservice -> h2db : Save the result to \n H2 DB using JPA
+activate h2db
+h2db->h2db : Insert WeatherRecord \n to WeatherData table 
+h2db->weatherservice: Return  Sucessfully saved response
+deactivate h2db
+alt if "Data Exists in H2 DB"
+weatherservice->h2db:Retrive Data from H2 DB
+activate h2db
+h2db->h2db:SELECT * FROM WEATHERDATA \n where COUNTRY={country} and CITY={city}
+h2db->weatherservice: Return WEATHERDATA entity response
+deactivate h2db
+weatherservice -> weatherservice: Process Weather Data Response and \n extract Description field
+end alt
+weatherservice->user:Return  WeatherData \n Response  with description field
+deactivate weatherservice
+alt if "Empty Query Param"
+weatherservice->h2db:Retrive Data from H2 DB
+activate h2db
+h2db->h2db:SELECT * FROM WEATHERDATA \n where COUNTRY={country} and CITY={city}
+h2db->weatherservice: Return WEATHERDATA entity response
+deactivate h2db
+weatherservice -> weatherservice: Process Weather Data Response and \n extract Description field
+end alt
+
+@enduml

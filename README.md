@@ -1,20 +1,39 @@
  Weather Services API
 =========================================
+Weather Service API Fronts  OpenWeatherMap api and will return the weather description based on the country and city name.This application is developed using below tech stack
+
+### Development Stack
+- Java 11
+- Spring Boot 2.4.2.RELEASE
+- Gradle 6.7 (gradlew can be used ) 
+- Swagger for API documentation
+- Spring Spock for Unit Test
+- Mocha and SuperTest and Chai frameworks for API-Tests
+
+## Application Flow Digram
+
+
+
+
+
+
+Assumption:
+This setup is for MAC same thing can be 
 
 ## Reading guide
 File names are relative to this repository's root unless otherwise stated
 
 ### Development Stack
-- Java 8
-- Spring Boot 2.1.6.RELEASE
-- Gradle 5.2.1 (gradlew can be used )
+- Java 11
+- Spring Boot 2.4.2.RELEASE
+- Gradle 6.7 (gradlew can be used )
 - Swagger
 - Spock
 - Mocha and SuperTest for api-tests
 
 ### Set up guide for  Mac
 - install homebrew
-- install openjdk java8 
+- install openjdk java11
     - brew tap adoptopenjdk/openjdk 
     - brew cask install adoptopenjdk8)
 - install npm 
