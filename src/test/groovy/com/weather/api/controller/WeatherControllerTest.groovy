@@ -17,43 +17,33 @@ class WeatherControllerTest extends Specification {
     }
 
     def "Successfully retrieves Weather Description for Valid Country and City"() {
-
         given:
-        def city = "Melbourne"
-        def country = "Australia"
-        def apiKey = "xxxx"
-
+        def city = 'Melbourne'
+        def country = 'Australia'
+        def apiKey = 'xxxx'
 
         when:
         def weatherResponse = controller.getWeatherDescription(country, city, apiKey)
 
         then:
-        1 * weatherService.getData(country, city, apiKey) >> new WeatherResponse("few clouds")
+        1 * weatherService.getData(country, city, apiKey) >> new WeatherResponse('few clouds')
         weatherResponse.statusCode == HttpStatus.OK
         weatherResponse.getBody().description == 'few clouds'
         weatherResponse != null
-
     }
 
-
     def "RecordNotFoundException for invalid country and  City"() {
-
         given:
-        def city = "Melbourne"
-        def country = "asdasda"
-        def apiKey = "xxxx"
-
+        def city = 'Melbourne'
+        def country = 'asdasda'
+        def apiKey = 'xxxx'
 
         when:
         def weatherResponse = controller.getWeatherDescription(country, city, apiKey)
 
         then:
-        1 * weatherService.getData(country, city, apiKey) >> { throw new RecordNotFoundException("Weather Data Not Found") }
+        1 * weatherService.getData(country, city, apiKey) >> { throw new RecordNotFoundException('Weather Data Not Found') }
         thrown RecordNotFoundException.class
-
     }
 
-
 }
-
-

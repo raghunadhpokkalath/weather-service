@@ -24,9 +24,9 @@ class WeatherServiceImplTest extends Specification {
     def setup() {
         weatherDataRepository = Mock(WeatherDataRepository)
         def keys  = new ArrayList()
-        keys.add("key1")
-        keys.add("key2")
-        apiConfig = new ApiConfig(url: 'http://locahost',keys:keys)
+        keys.add('key1')
+        keys.add('key2')
+        apiConfig = new ApiConfig(url: 'http://locahost', keys:keys)
         restTemplate = Mock(RestTemplate)
         weatherResponseExceptionHandler = Mock(WeatherResponseExceptionHandler)
         mapper = new ObjectMapper()

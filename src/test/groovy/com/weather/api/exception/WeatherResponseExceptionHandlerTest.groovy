@@ -6,6 +6,7 @@ import org.springframework.web.server.ResponseStatusException
 import spock.lang.Specification
 
 class WeatherResponseExceptionHandlerTest extends Specification {
+
     def WeatherResponseExceptionHandler weatherResponseExceptionHandler = new WeatherResponseExceptionHandler()
     def ClientHttpResponse clientHttpResponse
 
@@ -22,7 +23,6 @@ class WeatherResponseExceptionHandlerTest extends Specification {
     }
 
     def "Return False for HandleError"() {
-
         given:
         def ClientHttpResponse clientHttpResponse = Mock(ClientHttpResponse)
 
@@ -31,7 +31,6 @@ class WeatherResponseExceptionHandlerTest extends Specification {
 
         then:
         resp == false
-
-
     }
+
 }
