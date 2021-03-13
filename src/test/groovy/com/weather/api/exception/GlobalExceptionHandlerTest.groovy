@@ -13,7 +13,7 @@ class GlobalExceptionHandlerTest extends Specification {
         handler = new GlobalExceptionHandler()
     }
 
-    
+
     def "Verify HandleUnAuthorized Method"() {
         given:
         def exception = new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid Api Key");

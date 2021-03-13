@@ -67,7 +67,8 @@ jacocoTestCoverageVerification {
             }
             excludes = [
                     'com.weather.api.Application',
-                    'com.weather.api.config.SwaggerConfig'
+                    'com.weather.api.config.SwaggerConfig',
+                    'com.weather.api.config.AppConfig'
             ]
         }
     }

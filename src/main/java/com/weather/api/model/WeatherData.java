@@ -5,7 +5,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-@ToString
 @Getter
 @Entity
 @Table(uniqueConstraints={@UniqueConstraint(columnNames ={"country","city"})})
