@@ -105,3 +105,7 @@ http://localhost:8080/weather/h2-console
 Before clicking connect button .Please make sure JDBC URL is configured as "jdbc:h2:mem:weatherdb"
 
 click connect without giving a password for user 'sa' 
+
+
+Docker Build
+docker build -t weaterservice .

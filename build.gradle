@@ -76,3 +76,7 @@ jacocoTestCoverageVerification {
 
 
 test.finalizedBy jacocoTestReport,jacocoTestCoverageVerification
+
+application {
+    mainClass = 'com.weather.api.Application'
+}

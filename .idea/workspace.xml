@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb7c67ef-e878-4052-b88f-132a97236f10" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/groovy/com/weather/api/controller/WeatherControllerTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/com/weather/api/controller/WeatherControllerTest.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +251,7 @@
       <workItem from="1615616348802" duration="59000" />
       <workItem from="1615616599845" duration="1621000" />
       <workItem from="1615618799659" duration="684000" />
-      <workItem from="1615624172243" duration="11285000" />
+      <workItem from="1615624172243" duration="11504000" />
     </task>
     <servers />
   </component>
