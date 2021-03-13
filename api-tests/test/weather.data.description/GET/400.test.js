@@ -1,5 +1,5 @@
-describe('Record Not found for Invalid Input', function () {
-    it('Return 404 for invalid country', function (done) {
+describe('Bad Request Error For Empty Parameters', function () {
+    it('Return 400 for invalid country', function (done) {
         request.get('data/description?county=sd&city=Melbourne')
             .set('Content-Type', 'application/json')
             .set('x-api-key', 'd49ebe764fe53c5ca867f87c1ce9c6c7')

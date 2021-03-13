@@ -61,12 +61,13 @@ jacocoTestCoverageVerification {
         rule {
             element = 'CLASS'
             limit {
-                counter = 'LINE'
+                counter = 'CLASS'
                 value = 'COVEREDRATIO'
                 minimum = 1.0
             }
             excludes = [
-                    'com.weather.api.Application'
+                    'com.weather.api.Application',
+                    'com.weather.api.config.SwaggerConfig'
             ]
         }
     }

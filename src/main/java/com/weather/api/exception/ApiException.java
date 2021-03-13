@@ -23,7 +23,5 @@ public class ApiException {
     public ApiException(HttpStatus status, String message){
         this.message = message;
         this.status=status;
-        this.errors = new ArrayList<>();
-
     }
 }

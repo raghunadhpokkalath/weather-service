@@ -31,7 +31,7 @@ class WeatherControllerTest extends Specification {
         1 * weatherService.getData(country, city, apiKey) >> new WeatherResponse("few clouds")
         weatherResponse.statusCode == HttpStatus.OK
         weatherResponse.getBody().description == 'few clouds'
-        weatherResponse !=  null
+        weatherResponse != null
 
     }
 

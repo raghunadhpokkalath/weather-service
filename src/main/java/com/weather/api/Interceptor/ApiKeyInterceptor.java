@@ -12,11 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @Slf4j
-public class ApiKeyValidator implements HandlerInterceptor {
+public class ApiKeyInterceptor implements HandlerInterceptor {
 
-
-    //@Value("${api.valid.keys}}")
-    //private List<String> apiKeys;
 
     @Autowired
     ApiConfig apiConfig;

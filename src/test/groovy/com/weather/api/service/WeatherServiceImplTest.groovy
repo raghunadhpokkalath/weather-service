@@ -23,7 +23,10 @@ class WeatherServiceImplTest extends Specification {
 
     def setup() {
         weatherDataRepository = Mock(WeatherDataRepository)
-        apiConfig = new ApiConfig(url: 'http://locahost')
+        def keys  = new ArrayList()
+        keys.add("key1")
+        keys.add("key2")
+        apiConfig = new ApiConfig(url: 'http://locahost',keys:keys)
         restTemplate = Mock(RestTemplate)
         weatherResponseExceptionHandler = Mock(WeatherResponseExceptionHandler)
         mapper = new ObjectMapper()
@@ -67,22 +70,26 @@ class WeatherServiceImplTest extends Specification {
         thrown(RecordNotFoundException.class)
     }
 
-    def "Query Data from  DB if present and  dont invoke Openweathermap API"() {
+    def "Query Data from  DB if present and  dont invoke OpenWeatherMap API"() {
         given:
         def city = 'Melbourne'
         def country = 'Australia'
         def apiKey = 'apiKey'
-        WeatherData data = new WeatherData(country, city, 'overcast clouds')
-        def expectedResponse = new WeatherResponse('overcast clouds')
+        def actualData = new WeatherData(country, city, 'overcast clouds')
+        def expectedServiceResponse = new WeatherResponse('overcast clouds')
+        def expectedDBData = new WeatherData(country, city, 'overcast clouds')
 
         when:
-        weatherServiceImpl.getData(country, city, apiKey)
+        def actualServiceResp = weatherServiceImpl.getData(country, city, apiKey)
 
         then:
-        1 * weatherDataRepository.findWeatherDataByCountryAndCity(country, city) >> data
+        1 * weatherDataRepository.findWeatherDataByCountryAndCity(country, city) >> actualData
         0 * restTemplate.getForObject('http://locahost?q=Melbourne11,Australia111&appid=apiKey', JsonNode.class) >> weatherNode
         0 * weatherDataRepository.save(_)
-        expectedResponse.description == data.description
+        actualServiceResp.description == expectedServiceResponse.description
+        actualData.description == expectedDBData.description
+        actualData.country == expectedDBData.country
+        actualData.city == expectedDBData.city
     }
 
 }

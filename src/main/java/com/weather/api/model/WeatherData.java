@@ -7,7 +7,6 @@ import lombok.ToString;
 import javax.persistence.*;
 @ToString
 @Getter
-@Setter
 @Entity
 @Table(uniqueConstraints={@UniqueConstraint(columnNames ={"country","city"})})
 public class WeatherData {

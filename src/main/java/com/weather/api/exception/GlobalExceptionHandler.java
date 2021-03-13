@@ -33,6 +33,6 @@ public class GlobalExceptionHandler  {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(RecordNotFoundException.class)
     public final ApiException handleNotFound(RecordNotFoundException ex) {
-        return new ApiException(HttpStatus.NOT_FOUND,"Weather Data not Found");
+        return new ApiException(HttpStatus.NOT_FOUND,"Weather Data Not Found");
     }
 }
