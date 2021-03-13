@@ -1,4 +1,4 @@
-package com.weather.api.controller
+rpackage com.weather.api.controller
 
 import com.weather.api.dto.WeatherResponse
 import com.weather.api.exception.RecordNotFoundException
