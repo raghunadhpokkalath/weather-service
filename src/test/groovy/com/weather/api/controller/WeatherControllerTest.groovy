@@ -1,13 +1,12 @@
-rpackage com.weather.api.controller
+package com.weather.api.controller
 
 import com.weather.api.dto.WeatherResponse
 import com.weather.api.exception.RecordNotFoundException
 import com.weather.api.service.WeatherService
-import org.springframework.http.HttpStatus
 import spock.lang.Specification
+import org.springframework.http.HttpStatus
 
 class WeatherControllerTest extends Specification {
-
     WeatherService weatherService
     WeatherController controller;
 
@@ -45,5 +44,4 @@ class WeatherControllerTest extends Specification {
         1 * weatherService.getData(country, city, apiKey) >> { throw new RecordNotFoundException('Weather Data Not Found') }
         thrown RecordNotFoundException.class
     }
-
 }

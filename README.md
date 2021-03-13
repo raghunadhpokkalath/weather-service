@@ -10,7 +10,7 @@ Weather Service API Fronts  OpenWeatherMap api and will return the weather descr
 - Sring Bucket4j for API Rate Limit
 - Caffeine for caching
 - H2 for Stanalone DB
-- Gradle 6.7 (gradlew can be used) 
+- Gradle 6.8.3 (gradlew can be used) 
 - Spring Spock for Unit Test
 - Mocha and SuperTest and Chai frameworks
  for API-Tests
@@ -46,9 +46,7 @@ File names are relative to this repository's root unless otherwise stated
 │   ├── package-lock.json
 │   ├── package.json 
 │   └── test 
-         ├──....//api-test js files
-├── build
-│   ├──.... //Build folder
+│         ├──....//api-test js files
 ├── build.gradle //Build file
 ├── design
 |    └── swagger.yaml //Swagger documentation

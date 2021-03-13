@@ -10,3 +10,7 @@ src/api-tests/.DS_Store
 .classpath
 .gradle/**
 src/.DS_Store
+src/test/groovy/com/weather/api/.DS_Store
+.DS_Store
+.DS_Store
+.DS_Store

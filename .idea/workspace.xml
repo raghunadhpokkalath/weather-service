@@ -5,21 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb7c67ef-e878-4052-b88f-132a97236f10" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/design/swagger.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/google-java-format.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/design/GetWeatherData.puml" beforeDir="false" afterPath="$PROJECT_DIR$/design/GetWeatherData.puml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/weather/api/controller/WeatherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/weather/api/controller/WeatherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/groovy/com/weather/api/controller/WeatherControllerTest.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/groovy/com/weather/api/controller/WeatherControllerTest.groovy" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,10 +98,10 @@
       <recent name="$PROJECT_DIR$/src/main/test/groovy" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.weather.api.controller" />
       <recent name="com.weather.api.exception" />
       <recent name="com.weather.api.Interceptor" />
       <recent name="com.weather.api.service" />
-      <recent name="com.weather.api.controller" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.WeatherResponseExceptionHandlerTest">
@@ -264,7 +253,7 @@
       <workItem from="1615616348802" duration="59000" />
       <workItem from="1615616599845" duration="1621000" />
       <workItem from="1615618799659" duration="684000" />
-      <workItem from="1615624172243" duration="8658000" />
+      <workItem from="1615624172243" duration="11285000" />
     </task>
     <servers />
   </component>
@@ -286,16 +275,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/groovy/com/weather/api/controller/WeatherControllerTest.groovy</url>
-          <line>23</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/groovy/com/weather/api/controller/WeatherControllerTest.groovy</url>
-          <line>25</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/weather/api/service/WeatherServiceImpl.java</url>
           <line>46</line>
