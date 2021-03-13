@@ -1,0 +1,62 @@
+swagger: '2.0'
+info:
+  description: Api Documentation
+  version: '1.0'
+  title: Api Documentation
+  termsOfService: 'urn:tos'
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0'
+host: 'localhost:8080'
+tags:
+  - name: Weather Service
+    description: Weather Service
+paths:
+  /weather/data/description:
+    get:
+      tags:
+        - weather-controller
+      summary: Retrieve Weather Description
+      description: This endpoint retrieve Weather Description based on Country And City
+      operationId: getWeatherDescriptionUsingGET
+      produces:
+        - '*/*'
+      parameters:
+        - name: city
+          in: query
+          description: City Name
+          required: true
+          type: string
+        - name: county
+          in: query
+          description: Country Name
+          required: true
+          type: string
+        - name: x-api-key
+          in: header
+          description: API Key
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Weather Description
+          schema:
+            $ref: '#/definitions/WeatherResponse'
+        '400':
+          description: Invalid Request Parameters
+        '401':
+          description: Invalid API Key
+        '403':
+          description: Forbidden
+        '404':
+          description: WeatherData Not Found
+        '429':
+          description: 'API  Key Rate Limit '
+definitions:
+  WeatherResponse:
+    type: object
+    properties:
+      description:
+        type: string
+    title: WeatherResponse

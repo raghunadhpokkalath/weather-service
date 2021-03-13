@@ -2,15 +2,37 @@
 title Weather description API
 actor "User" as user
 control "Weather Service" as weatherservice<< Spring APP>>
+control "Bucket4j \n API RateLimit" as bucket4j
 database "H2 DB" as h2db
 participant "Open WeatherMap \nAPI" as openweathermap
 activate user
+
 user->weatherservice:  ** GET /weather/data/description?county={countryname}&city={city}+[x-api-key] **
 activate weatherservice
 weatherservice -> weatherservice: validateRequest
-weatherservice->openweathermap: **  GET http://api.openweathermap.org/data/2.5/weather?q={country},{city}&appid={apiKey} **
+alt if "Empty Query Param or Requst Header"
+    weatherservice -> user : Return <400>, Bad Request Error
+end alt
+
+alt if "Invalid API Key"
+    weatherservice->user : Return <401>,Invalid Api Key
+end alt
+alt if "Valid Request Paramaters and API Key"
+weatherservice -> bucket4j : Validate API Key Rate Limit
+activate bucket4j
+bucket4j -> bucket4j : Verify if x-api-key header \n has reached api limit
+alt if "API Limit Reached"
+activate bucket4j
+bucket4j -> weatherservice : Return 429 if API Key "API Limit Reached"
+weatherservice -> user : Return <429>,You have exceeded the hourly limit
+deactivate bucket4j
+end alt
+bucket4j -> weatherservice : Return 200 if API limit has not  Reached
+deactivate bucket4j
+
+  weatherservice->openweathermap: **  GET http://api.openweathermap.org/data/2.5/weather?q={country},{city}&appid={apiKey} **
 activate openweathermap
-openweathermap->weatherservice: Return Weather Data
+openweathermap[#green]->weatherservice: Return Weather Data
 deactivate openweathermap
 weatherservice -> weatherservice: Process Weather Data Response and \n extract Description field
 weatherservice -> h2db : Save the result to \n H2 DB using JPA
@@ -22,19 +44,12 @@ alt if "Data Exists in H2 DB"
 weatherservice->h2db:Retrive Data from H2 DB
 activate h2db
 h2db->h2db:SELECT * FROM WEATHERDATA \n where COUNTRY={country} and CITY={city}
-h2db->weatherservice: Return WEATHERDATA entity response
+h2db->weatherservice: Return WEATHERDATA Entity
 deactivate h2db
-weatherservice -> weatherservice: Process Weather Data Response and \n extract Description field
+weatherservice-> weatherservice: Process Weather Data Response and \n extract Description field
 end alt
-weatherservice->user:Return  WeatherData \n Response  with description field
+weatherservice[#green]->user: Return <200> ,WeatherData \n Response with description
 deactivate weatherservice
-alt if "Empty Query Param"
-weatherservice->h2db:Retrive Data from H2 DB
-activate h2db
-h2db->h2db:SELECT * FROM WEATHERDATA \n where COUNTRY={country} and CITY={city}
-h2db->weatherservice: Return WEATHERDATA entity response
-deactivate h2db
-weatherservice -> weatherservice: Process Weather Data Response and \n extract Description field
 end alt
-
+deactivate weatherservice
 @enduml

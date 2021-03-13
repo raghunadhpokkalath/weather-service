@@ -22,7 +22,7 @@ spring:
     cache-names:
       - api-key-rate-limit
     caffeine:
-      spec: maximumSize=1000000,expireAfterAccess=3600s
+      spec: maximumSize=1000,expireAfterAccess=3600s
 bucket4j:
   enabled: true
   filters:

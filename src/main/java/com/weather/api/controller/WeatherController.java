@@ -26,7 +26,10 @@ public class WeatherController {
     @ApiOperation(value = "Retrieve Weather Description", response = WeatherResponse.class, notes = "This endpoint retrieve Weather Description based on Country And City")
     @ApiResponses({@ApiResponse(code = 200, message = "Weather Description"),
             @ApiResponse(code = 400, message = "Invalid Request Parameters"),
-            @ApiResponse(code = 500, message = "Internal Server Error")})
+            @ApiResponse(code = 404, message = "WeatherData Not Found"),
+            @ApiResponse(code = 401,message = "Invalid API Key"),
+            @ApiResponse(code=429,message = "API  Key Rate Limit ")
+    })
 
     public ResponseEntity<WeatherResponse> getWeatherDescription(
             @ApiParam("Country Name") @RequestParam @NotEmpty(message = "Country  is Mandatory") String county, @ApiParam("City Name") @RequestParam @NotEmpty(message = "City  is Mandatory") String city,

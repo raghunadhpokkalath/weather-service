@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "9c992e20-c4fa-4b42-8036-bc7422e502d1",
+		"name": "WeatherService API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "200-GetWeather Description",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "41b8ce2c3caa7d8804dd27bac339fa42",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/weather/data/description?county=uk&city=london",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"weather",
+						"data",
+						"description"
+					],
+					"query": [
+						{
+							"key": "county",
+							"value": "uk"
+						},
+						{
+							"key": "city",
+							"value": "london"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "404-GetWeather Description-No Record Found",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "71793f5b02bb0fe98c7b8720c76cb9f9"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/weather/data/description?county=kk&city=kk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"weather",
+						"data",
+						"description"
+					],
+					"query": [
+						{
+							"key": "county",
+							"value": "kk"
+						},
+						{
+							"key": "city",
+							"value": "kk"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "401-GetWeather Description - Invalid API Key Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"type": "text",
+						"value": "invalid"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8080/weather/data/description?county=UK&city=LONDON",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"weather",
+						"data",
+						"description"
+					],
+					"query": [
+						{
+							"key": "county",
+							"value": "UK"
+						},
+						{
+							"key": "city",
+							"value": "LONDON"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
