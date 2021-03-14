@@ -3,7 +3,7 @@ require('it-each')({ testPerIteration: true });
 let cities = ['Houston', 'Florida', 'Dallas', 'Phoenix', 'Boston', 'Denver']
 describe('429- Verify API Key Rate Limit', function () {
     let i = 0;
-    it.each(cities, 'Return Hourly Limit Exceeded once the Hourly Quota Reaches 5', function (done) {
+    it.each(cities, 'Return Hourly Limit Exceeded once the  API Hourly Quota Reaches 5', function (done) {
         request.get('data/description?county=USA&city=' + cities[i])
             .set('Content-Type', 'application/json')
             .set('x-api-key', '8eccabe0fad952681a81b7c4f7f2a2d1')
