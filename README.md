@@ -76,18 +76,27 @@ File names are relative to this repository's root unless otherwise stated
 ```
 
 ### Running application locally 
-Before running the application ensure that the setup required for mac is completed
-     Clone the repo using git
+Applications can be executed locally either using Docker or Gradle tool
+
+ Clone the repo using git
    -  git clone https://github.com/raghunadhpokkalath/weather-service.git
    -  cd weather-service
+
+## Running using Gradle
+Before running the application ensure that the setup required for mac is completed
    - run "./gradlew clean build"  (This will build and run the test .Jacoco plugin is integrated to ensure there is a proper code coverage)
     Once the build is completed.Run the below  commands
    - run "./gradlew bootRun"  ("This will start the application in 8080 port")
-   - access the api using below endpoint or import the postman collection from "postman-collection/WeatherServiceAPI.postman_collection.json"
-   - Weather  API  Endpoint [Please pass http header x-api-key with
+## Running using Docker
+Please ensure docker for mac or docker for windows is intalled on the machine.Please run the below commands from weather-service root folder
+docker build -t weatherservice .
+docker run -p8080:8080 weatherservice
+## Access the Application 
+Access the api using below endpoint or import the postman collection from "postman-collection/WeatherServiceAPI.postman_collection.json"
+- Weather  API  Endpoint [Please pass http header x-api-key with
     one of the valid api key from application.yaml] 
     http://localhost:8080/weather/data/description?county=uk&city=london 
-   - Swagger-ui  - http://localhost:8080/weather/swagger-ui.html
+- Swagger-ui  - http://localhost:8080/weather/swagger-ui.html
 
 ### Running API-Tests
  Before running api-test ensure that application is running at 8080 port
@@ -105,7 +114,3 @@ http://localhost:8080/weather/h2-console
 Before clicking connect button .Please make sure JDBC URL is configured as "jdbc:h2:mem:weatherdb"
 
 click connect without giving a password for user 'sa' 
-
-
-Docker Build
-docker build -t weaterservice .
