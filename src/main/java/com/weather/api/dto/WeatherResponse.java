@@ -1,15 +1,12 @@
 package com.weather.api.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-
+@AllArgsConstructor
 @Getter
 public class WeatherResponse {
 
     private String description;
-
-    public WeatherResponse(String description) {
-        this.description = description;
-    }
 }
