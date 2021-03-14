@@ -89,8 +89,8 @@ Before running the application ensure that the setup required for mac is complet
    - run "./gradlew bootRun"  ("This will start the application in 8080 port")
 ## Running using Docker
 Please ensure the docker for mac or docker for windows is installed on the machine. Please run the below commands from the weather-service root directory
-docker build -t weatherservice .
-docker run -p8080:8080 weatherservice
+- docker build -t weatherservice .
+- docker run -p8080:8080 weatherservice
 ## Access the Application 
 Access the API using below endpoint or import the postman collection from "postman-collection/WeatherServiceAPI.postman_collection.json"
 - Weather  API  Endpoint [Please pass http header x-api-key with
