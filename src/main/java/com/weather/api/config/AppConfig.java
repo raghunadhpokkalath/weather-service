@@ -25,9 +25,10 @@ public class AppConfig implements WebMvcConfigurer {
     public void addInterceptors(final InterceptorRegistry registry) {
         log.debug("addInterceptors method");
         registry.addInterceptor(apiKeyValidator()).excludePathPatterns(
-                        "/v2/api-docs",
+                        "/v3/api-docs",
                         "/swagger-resources/**",
-                        "/swagger-ui.html"
+                        "/swagger-ui.html",
+                        "/webjars/**"
                 );
         WebMvcConfigurer.super.addInterceptors(registry);
 

@@ -22,7 +22,7 @@ public class ApiKeyInterceptor implements HandlerInterceptor {
     public boolean preHandle(final HttpServletRequest request, final HttpServletResponse response, final Object handler) throws Exception {
         String headerApiKey = request.getHeader("x-api-key");
         log.info("ApiKeyValidator preHandle valid apikeys {}", apiConfig.getKeys());
-        if (!apiConfig.getKeys().contains(headerApiKey.trim())) {
+        if (!apiConfig.getKeys().contains(headerApiKey)) {
             log.info("Api Key in Header Not matching with Valid API Keys {}",headerApiKey);
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid Api Key");
         }
