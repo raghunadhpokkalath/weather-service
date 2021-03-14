@@ -69,7 +69,7 @@ File names are relative to this repository's root unless otherwise stated
     │  
     └── test
         ├── groovy
-        │   └── .. //Spring spock test files
+        │   └── .. //Spring Spock test files 
         └── resources
 
 
@@ -84,15 +84,15 @@ Applications can be executed locally either using Docker or Gradle tool
 
 ## Running using Gradle
 Before running the application ensure that the setup required for mac is completed
-   - run "./gradlew clean build"  (This will build and run the test .Jacoco plugin is integrated to ensure there is a proper code coverage)
+   - run "./gradlew clean build"  (This will build and run the test. Jacoco plugin is integrated to ensure there is proper code coverage)
     Once the build is completed.Run the below  commands
    - run "./gradlew bootRun"  ("This will start the application in 8080 port")
 ## Running using Docker
-Please ensure docker for mac or docker for windows is intalled on the machine.Please run the below commands from weather-service root folder
+Please ensure the docker for mac or docker for windows is installed on the machine. Please run the below commands from the weather-service root directory
 docker build -t weatherservice .
 docker run -p8080:8080 weatherservice
 ## Access the Application 
-Access the api using below endpoint or import the postman collection from "postman-collection/WeatherServiceAPI.postman_collection.json"
+Access the API using below endpoint or import the postman collection from "postman-collection/WeatherServiceAPI.postman_collection.json"
 - Weather  API  Endpoint [Please pass http header x-api-key with
     one of the valid api key from application.yaml] 
     http://localhost:8080/weather/data/description?county=uk&city=london 
@@ -107,7 +107,7 @@ Access the api using below endpoint or import the postman collection from "postm
 
  
 ### H2 DB console
-H2 in-memory database is used to store the weather data once retrived from open api .The H2 console can be accessed using below link 
+H2 in-memory database is used to store the weather data once retrieved from open api .The H2 console can be accessed using below link 
 
 http://localhost:8080/weather/h2-console
 
